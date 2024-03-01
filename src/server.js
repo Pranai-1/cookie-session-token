@@ -36,7 +36,7 @@ app.post("/login",(req,res)=>{
     if(body.username=="pranai" && body.password=="pranai"){
         let userSecretKey="hi"
         let userToken = jwt.sign({ id: "pranai" }, userSecretKey, { expiresIn: '1d' });
-        res.status(200).json({message:"Success"})
+        res.status(200).json({message:"Success",userToken})
     }
    
    else

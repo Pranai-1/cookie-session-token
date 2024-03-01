@@ -29,6 +29,8 @@ function handleSubmit(event){
 })
  .then((data)=>{
     alert(data.message)
+    console.log(data.token)
+    localStorage.setItem("token",data.token)
     window.location.href = "http://127.0.0.1:5500/src/home.html";
  })
  .catch((error)=>alert(error))
