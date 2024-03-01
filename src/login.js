@@ -12,7 +12,8 @@ function handleSubmit(event){
     body:JSON.stringify({
         username,
         password
-    })
+    }),
+  
  }
 
  fetch("http://localhost:4000/login",requestOptions)
@@ -28,6 +29,8 @@ function handleSubmit(event){
 })
  .then((data)=>{
     alert(data.message)
+
+    
     console.log(data.userToken)
     localStorage.setItem("token",data.userToken)
     window.location.href = "http://127.0.0.1:5500/src/home.html";
@@ -45,3 +48,5 @@ function handleSubmit(event){
 
 //Stringifying the body data is necessary when you're using the Fetch API to send data in the body of a request because the 
 //Fetch API requires the body data to be in the form of a string or a specific type of object
+
+
