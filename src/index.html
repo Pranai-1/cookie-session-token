@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="./output.css" rel="stylesheet">
+</head>
+<body>
+    <div class="h-screen w-screen p-3 bg-indigo-500 ">
+    
+      <form onsubmit="handleSubmit(event)" class="bg-gray-200 m-5 ml-80 mt-60 p-5 w-max rounded-lg grid items-center justify-center gap-2">
+        <label for="username" class="mx-2 font-medium p-2">Username : 
+        <input id="username" placeholder="username" class=" p-2 rounded-lg font-normal"/>
+    </label>
+       
+        <label for="password" class="mx-2 font-medium p-2">Password : 
+        <input id="password" placeholder="password" class=" p-2 rounded-lg font-normal "/>
+    </label>
+        
+        <input type="submit" class="bg-blue-600 rounded-lg p-2 w-max items-center ml-28">
+      </form>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>
