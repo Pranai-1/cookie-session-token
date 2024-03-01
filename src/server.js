@@ -34,38 +34,38 @@ app.get("/",(req,res)=>{
 // sessionStorage.setItem("token",token);
 //sessionStorage.getItem("token");
 //same for localStorage
-// app.post("/login",(req,res)=>{
-//     const {body}=req
-//     console.log(body)
-//     if(body.username=="pranai" && body.password=="pranai"){
+app.post("/login",(req,res)=>{
+    const {body}=req
+    console.log(body)
+    if(body.username=="pranai" && body.password=="pranai"){
        
-//         let userToken = jwt.sign({ id: "pranai" }, userSecretKey, { expiresIn: '1d' });
-//         res.status(200).json({message:"Success",userToken})
-//     }
+        let userToken = jwt.sign({ id: "pranai" }, userSecretKey, { expiresIn: '1d' });
+        res.status(200).json({message:"Success",userToken})
+    }
    
-//    else
-//     res.status(404).json({message:"failed"})
-// })
+   else
+    res.status(404).json({message:"failed"})
+})
 
 
-// app.get("/protected",TokenValidate,(req,res)=>{
-//     let username=req.user
-//     res.status(200).json({message:"Success",username})
-// })
+app.get("/protected",TokenValidate,(req,res)=>{
+    let username=req.user
+    res.status(200).json({message:"Success",username})
+})
 
-// function TokenValidate(req,res,next){
-//     let token=req.headers.authorization.split("Bearer ")[1]
-//    console.log(token)
-//    jwt.verify(token,userSecretKey,(err,data)=>{
-//     if(data){
-//         req.user=data.id
-//         next()
-//     }
-//     else{
-//         res.status(403).json({message:"unauthorized"})
-//     }
-//    })
-// }
+function TokenValidate(req,res,next){
+    let token=req.headers.authorization.split("Bearer ")[1]
+   console.log(token)
+   jwt.verify(token,userSecretKey,(err,data)=>{
+    if(data){
+        req.user=data.id
+        next()
+    }
+    else{
+        res.status(403).json({message:"unauthorized"})
+    }
+   })
+}
 
 
 
