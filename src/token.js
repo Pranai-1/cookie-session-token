@@ -4,7 +4,6 @@ function getDetails(event){
     let requestOptions={
         method:"GET",
         headers:{
-            "Content-Type":"application/json",
             "Authorization":`Bearer ${token}`
         }
     }
@@ -16,7 +15,11 @@ function getDetails(event){
             throw new Error("error occured")
         }
     })
-    .then((res)=> document.getElementById("token").innerHTML=res.token)
+    .then((res)=> document.getElementById("token").innerHTML=`hi ${res.username}`)
     .catch((error)=>console.log(error))
    
+}
+
+function removeToken(){
+    localStorage.removeItem("token")
 }

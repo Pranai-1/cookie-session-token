@@ -5,7 +5,7 @@ const app=express();
 app.use(cors())
 app.use(express.json())
 const port=4000
-
+const userSecretKey="hi"
 
 app.get("/",(req,res)=>{
     console.log("running")
@@ -35,7 +35,7 @@ app.post("/login",(req,res)=>{
     const {body}=req
     console.log(body)
     if(body.username=="pranai" && body.password=="pranai"){
-        let userSecretKey="hi"
+       
         let userToken = jwt.sign({ id: "pranai" }, userSecretKey, { expiresIn: '1d' });
         res.status(200).json({message:"Success",userToken})
     }
@@ -45,7 +45,23 @@ app.post("/login",(req,res)=>{
 })
 
 
-app.get("/protected")
+app.get("/protected",validate,(req,res)=>{
+    let username=req.user
+    res.status(200).json({message:"Success",username})
+})
 
+function validate(req,res,next){
+    let token=req.headers.authorization.split("Bearer ")[1]
+   console.log(token)
+   jwt.verify(token,userSecretKey,(err,data)=>{
+    if(data){
+        req.user=data.id
+        next()
+    }
+    else{
+        res.status(403).json({message:"unauthorized"})
+    }
+   })
+}
 
 app.listen(port,()=>console.log(`server is running in http://localhost:${port}`))
