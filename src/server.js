@@ -1,5 +1,6 @@
 const express=require("express")
 const cors=require("cors")
+const jwt=require("jsonwebtoken")
 const app=express();
 app.use(cors())
 app.use(express.json())
@@ -42,6 +43,9 @@ app.post("/login",(req,res)=>{
    else
     res.status(404).json({message:"failed"})
 })
+
+
+app.get("/protected")
 
 
 app.listen(port,()=>console.log(`server is running in http://localhost:${port}`))
